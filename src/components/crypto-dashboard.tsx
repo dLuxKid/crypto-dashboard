@@ -91,28 +91,28 @@ export function CryptoDashboard() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-2.5 top-5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-5 h-4 w-4" />
           <input
             type="text"
             placeholder="Search cryptocurrencies..."
-            className="pl-8 pr-4 h-14 rounded-md bg-white border border-gray-300"
+            className="pl-8 w-full sm:w-auto pr-4 h-14 rounded-md bg-white border border-gray-300"
             value={searchTerm}
             onChange={handleSearch}
           />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center w-full sm:w-auto justify-between sm:justify-normal gap-4">
           {dataUpdatedAt ? (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm">
               Last updated: {new Date(dataUpdatedAt).toLocaleTimeString()}
             </p>
           ) : null}
           <button
             onClick={handleRefresh}
             disabled={isLoading}
-            className="px-6 py-3 rounded-lg flex items-center justify-center bg-neutral-900 text-white cursor-pointer hover:bg-neutral-900/90 active:bg-neutral-900/90 transition"
+            className="py-2 px-4 sm:px-6 sm:py-3 rounded-lg flex items-center justify-center bg-neutral-900 text-white cursor-pointer hover:bg-neutral-900/90 active:bg-neutral-900/90 transition"
           >
             <RefreshCw
-              className={`mr-2 h-4 w-4 ${isLoading ? "animate-spin" : ""}`}
+              className={`mr-2 size-4 ${isLoading ? "animate-spin" : ""}`}
             />
             Refresh
           </button>
@@ -147,8 +147,8 @@ export function CryptoDashboard() {
                     <div className="h-8 w-32 bg-gray-300 rounded mb-2"></div>
                     <div className="h-4 w-20 bg-gray-300 rounded"></div>
                   </div>
-                  <div className="border-t border-gray-300 p-6">
-                    <div className="flex w-full justify-between">
+                  <div className="border-t border-gray-300 p-6 py-4">
+                    <div className="flex w-full flex-wrap gap-2 justify-between">
                       <div className="h-3 w-24 bg-gray-300 rounded"></div>
                       <div className="h-3 w-20 bg-gray-300 rounded"></div>
                     </div>
@@ -194,8 +194,8 @@ export function CryptoDashboard() {
                     {Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
                   </div>
                 </div>
-                <div className="border-t border-gray-300 p-6 text-xs text-gray-500">
-                  <div className="flex w-full justify-between">
+                <div className="border-t border-gray-300 p-6 py-4 text-xs text-gray-500">
+                  <div className="flex w-full gap-2 flex-wrap justify-between">
                     <span>Market Cap: {formatMarketCap(coin.market_cap)}</span>
                     <span>Updated: {formatDate(coin.last_updated)}</span>
                   </div>
@@ -206,9 +206,7 @@ export function CryptoDashboard() {
 
       {data && filteredCoins.length === 0 && (
         <div className="rounded-lg border border-dashed p-8 text-center">
-          <p className="text-muted-foreground">
-            No cryptocurrencies found matching your search.
-          </p>
+          <p className="">No cryptocurrencies found matching your search.</p>
         </div>
       )}
     </div>
